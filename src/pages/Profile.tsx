@@ -107,6 +107,12 @@ const Profile = () => {
                         >
                             Return Home
                         </Button>
+                        <Button
+                            onClick={() => navigate('/profile/update')}
+                            className="inline-flex items-center mx-6 px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        >
+                            Create Profile
+                        </Button>
                     </div>
                 </div>
             </div>
@@ -153,7 +159,7 @@ const Profile = () => {
                                         to="/profile/update"
                                         className="px-6 py-2 bg-white text-blue-600 rounded-full font-medium hover:bg-blue-50 transition-colors"
                                     >
-                                        Edit Profile
+                                        Update Profile
                                     </Link>
                                 </div>
                             </div>
