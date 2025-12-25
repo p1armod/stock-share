@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import conf from "../conf/conf";
-import type { StockDataPoint } from "../types/chart";
 
 export const stockDataApi = createApi({
     reducerPath: "stockDataApi",
@@ -47,14 +46,14 @@ export const stockDataApi = createApi({
                     datatype: 'json',
                     apikey: conf.alpha_vantage_api_key
                 });
-                
+
                 return {
                     url: `https://www.alphavantage.co/query?${params.toString()}`,
                     method: "GET",
                 };
             },
             transformResponse: (response: any) => {
-                
+
                 if (!response || !response['Time Series (Daily)']) {
                     console.error('Unexpected API response format');
                     return [];
@@ -68,7 +67,7 @@ export const stockDataApi = createApi({
                     close: parseFloat(values['4. close']),
                     volume: parseInt(values['5. volume'], 10)
                 }));
-                
+
                 return transformedData.reverse();
             }
         }),
@@ -93,17 +92,17 @@ export const stockDataApi = createApi({
                 }
                 const timeSeries = response['Weekly Time Series'];
                 const transformedData = Object.entries(timeSeries).map(([date, values]: [string, any]) => ({
-                        date,
-                        open: parseFloat(values['1. open']),
-                        high: parseFloat(values['2. high']),
-                        low: parseFloat(values['3. low']),
-                        close: parseFloat(values['4. close']),
-                        volume: parseInt(values['5. volume'], 10)
-                    }));
-                    
-                    return transformedData.reverse();
-                }
+                    date,
+                    open: parseFloat(values['1. open']),
+                    high: parseFloat(values['2. high']),
+                    low: parseFloat(values['3. low']),
+                    close: parseFloat(values['4. close']),
+                    volume: parseInt(values['5. volume'], 10)
+                }));
+
+                return transformedData.reverse();
             }
+        }
         ),
         getStockDataMonthly: builder.query({
             query: (symbol) => {
@@ -126,17 +125,17 @@ export const stockDataApi = createApi({
                 }
                 const timeSeries = response['Monthly Time Series'];
                 const transformedData = Object.entries(timeSeries).map(([date, values]: [string, any]) => ({
-                        date,
-                        open: parseFloat(values['1. open']),
-                        high: parseFloat(values['2. high']),
-                        low: parseFloat(values['3. low']),
-                        close: parseFloat(values['4. close']),
-                        volume: parseInt(values['5. volume'], 10)
-                    }));
-                    
-                    return transformedData.reverse();
-                }
+                    date,
+                    open: parseFloat(values['1. open']),
+                    high: parseFloat(values['2. high']),
+                    low: parseFloat(values['3. low']),
+                    close: parseFloat(values['4. close']),
+                    volume: parseInt(values['5. volume'], 10)
+                }));
+
+                return transformedData.reverse();
             }
+        }
         ),
         getStockNews: builder.query({
             query: (symbol) => ({
@@ -163,7 +162,7 @@ export const stockDataApi = createApi({
                 }
                 return response.feed;
             },
-            
+
         }),
         getMarketData: builder.query({
             query: () => ({

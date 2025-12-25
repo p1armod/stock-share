@@ -1,5 +1,5 @@
 import type { StockDataPoint } from "../../types/chart";
-import { AreaChart as RechartsAreaChart, XAxis, YAxis, CartesianGrid, Tooltip, Area, ResponsiveContainer,ReferenceLine } from "recharts";
+import { AreaChart as RechartsAreaChart, XAxis, YAxis, CartesianGrid, Tooltip, Area, ResponsiveContainer } from "recharts";
 
 
 interface AreaChartProps {

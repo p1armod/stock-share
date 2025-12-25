@@ -8,7 +8,7 @@ export const watchListApi = createApi({
   baseQuery: () => ({ data: null }),
   tagTypes: ['WatchList'],
   endpoints: (builder) => ({
-    
+
     // Get all watchlists for the current user
     getWatchLists: builder.query<WatchList[], string>({
       queryFn: async (userId) => {
@@ -22,9 +22,9 @@ export const watchListApi = createApi({
       providesTags: (result) =>
         result
           ? [
-              ...result.map(({ $id }) => ({ type: 'WatchList' as const, id: $id })),
-              { type: 'WatchList', id: 'LIST' },
-            ]
+            ...result.map(({ $id }) => ({ type: 'WatchList' as const, id: $id })),
+            { type: 'WatchList', id: 'LIST' },
+          ]
           : [{ type: 'WatchList', id: 'LIST' }],
     }),
 
@@ -51,7 +51,7 @@ export const watchListApi = createApi({
           return { error: error.message };
         }
       },
-      invalidatesTags: (result, error, { $id }) => [{ type: 'WatchList', id: $id }],
+      invalidatesTags: (_result, _error, { $id }) => [{ type: 'WatchList', id: $id }],
     }),
 
     // Delete a watchlist
@@ -64,7 +64,7 @@ export const watchListApi = createApi({
           return { error: error.message };
         }
       },
-      invalidatesTags: (result, error, id) => [
+      invalidatesTags: (_result, _error, id) => [
         { type: 'WatchList', id },
         { type: 'WatchList', id: 'LIST' },
       ],
@@ -80,7 +80,7 @@ export const watchListApi = createApi({
           return { error: error.message };
         }
       },
-      invalidatesTags: (result, error, { watchlistId }) => [
+      invalidatesTags: (_result, _error, { watchlistId }) => [
         { type: 'WatchList', id: watchlistId },
       ],
     }),
@@ -95,7 +95,7 @@ export const watchListApi = createApi({
           return { error: error.message };
         }
       },
-      invalidatesTags: (result, error, { watchlistId }) => [
+      invalidatesTags: (_result, _error, { watchlistId }) => [
         { type: 'WatchList', id: watchlistId },
       ],
     }),
